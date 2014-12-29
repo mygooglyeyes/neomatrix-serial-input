@@ -39,7 +39,7 @@ Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(5, 8, PIN,
 //sets up colors for scrolling text - in this sketch only the first one is used
 const uint16_t colors[] =
 {
-	matrix.Color(0, 0, 255), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255)
+	matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255)
 };
 
 void setup()
@@ -58,6 +58,13 @@ void loop ()
 {
 	matrix.fillScreen(0);  //clear the screen
 	matrix.setCursor(x, 0);  //set the begining cursor position
+	serialtochar();
+	chartoscreen();
+
+}  //end loop
+
+void serialtochar()
+{
 	while (Serial.available())  //if serial data is available, run the loop
 	{
 		delay(10);
@@ -66,9 +73,13 @@ void loop ()
 			char c = Serial.read();  //read the next byte of data
 			readString += c;  //append the data to the char variable readString
 		}
-		
+
 	}
 
+}
+
+void chartoscreen()
+{
 	if (readString.length() > 0)  //if the number of bytes in readString are greater than 0
 	{
 		matrix.println(readString);  //print the data in readString
@@ -80,8 +91,9 @@ void loop ()
 			readString = "";  //set the data to blank
 		}
 
+
 		matrix.show();  //show the data stored
 		delay(70);  //wait a bit - sets scrolling speed
-	}
 
-}  //end loop
+	}
+}
