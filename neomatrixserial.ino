@@ -9,7 +9,7 @@ String readString;
 
 
 
-Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(5, 8, PIN,
+adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(5, 8, PIN,
                             NEO_MATRIX_TOP     + NEO_MATRIX_RIGHT +
                             NEO_MATRIX_COLUMNS + NEO_MATRIX_PROGRESSIVE,
                             NEO_GRB            + NEO_KHZ800);
