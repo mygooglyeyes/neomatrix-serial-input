@@ -1,4 +1,3 @@
-// Adafruit_NeoMatrix example for single NeoPixel Shield.
 // scrolls data read from serial to matrix
 
 #include <Adafruit_GFX.h>
