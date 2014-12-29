@@ -63,8 +63,8 @@ void loop ()
 		delay(10);
 		if (Serial.available() > 0)  //if there is serial data continue
 		{
-			char c = Serial.read();  //read the first byte of data
-			readString += c;  //append the data to the variable reaString
+			char c = Serial.read();  //read the next byte of data
+			readString += c;  //append the data to the char variable readString
 		}
 		
 	}
@@ -72,15 +72,15 @@ void loop ()
 	if (readString.length() > 0)  //if the number of bytes in readString are greater than 0
 	{
 		matrix.println(readString);  //print the data in readString
-		pass = -abs(readString.length());  //set pass to the negative value of the number of charachters
+		pass = -abs(readString.length());  //set pass to the negative value of the number of characters
 
-		if(--x < pass * 6)  //reserve 6 spaces for each charachter - when x = that value, continue
+		if(--x < pass * 6)  //reserve 6 spaces for each character - continue looping until x = pass * 6
 		{
 			x = matrix.width();  //set x to the number of colums in the matrix
 			readString = "";  //set the data to blank
 		}
 
-		matrix.show();  //write the data to the matrix
+		matrix.show();  //show the data stored
 		delay(70);  //wait a bit - sets scrolling speed
 	}
 
