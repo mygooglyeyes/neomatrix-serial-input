@@ -44,7 +44,7 @@ const uint16_t colors[] =
 
 void setup()
 {
-	Serial.begin(9600);	//turn on the serial connection
+	Serial.begin(57600);	//turn on the serial connection
 	matrix.begin();  	//initalize the matrix
 	matrix.setTextWrap(false);
 	matrix.setBrightness(40);
@@ -52,7 +52,7 @@ void setup()
 }
 
 int x    = matrix.width();  //holds the width of the matrix for counting colums
-int pass = 0;  //used to calculate the number of charachters read from the serial input
+int pass = 0;  //used to calculate the number of characters read from the serial input
 
 void loop ()
 {
@@ -70,6 +70,7 @@ void serialtochar()
 		delay(10);
 		if (Serial.available() > 0)  //if there is serial data continue
 		{
+			
 			char c = Serial.read();  //read the next byte of data
 			readString += c;  //append the data to the char variable readString
 		}
@@ -84,7 +85,7 @@ void chartoscreen()
 	{
 		matrix.println(readString);  //print the data in readString
 		pass = -abs(readString.length());  //set pass to the negative value of the number of characters
-
+		
 		if(--x < pass * 6)  //reserve 6 spaces for each character - continue looping until x = pass * 6
 		{
 			x = matrix.width();  //set x to the number of colums in the matrix
